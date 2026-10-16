@@ -21,15 +21,20 @@ jobs:
 
       - name: Gerar changelog
         run: |
-          echo '# Changelog" > CHANGELOG.md
+          echo "# Changelog" > CHANGELOG.md
           echo "" >> CHANGELOG.md
           echo "## Últimas alterações" >> CHANGELOG.md
           echo "" >> CHANGELOG.md
 
+          git log -10 \
+            --pretty=format:"- $s (%h) - %an" \
+            -- . ':!CHANGELOG.md' \
+            >> CHANGELOG.md
+
       - name: Salvar changelog
         run: |
           git config user.name "github-actions[bot]"
-          git confiig user.mail \
+          git config user.mail \
             "41898282+github-actions[bot]@users.noreply.github.com"
 
           git add CHANGELOG.md
