@@ -27,7 +27,7 @@ jobs:
           echo "" >> CHANGELOG.md
 
           git log -10 \
-            --pretty=format:"- $s (%h) - %an" \
+            --pretty=format:"- **$s** (%h) - %an%n %b%n" \
             -- . ':!CHANGELOG.md' \
             >> CHANGELOG.md
 
