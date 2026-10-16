@@ -1,0 +1,40 @@
+name: Gerar Changelog
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions: 
+  contents: write
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar repositório
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Gerar changelog
+        run: |
+          echo '# Changelog" > CHANGELOG.md
+          echo "" >> CHANGELOG.md
+          echo "## Últimas alterações" >> CHANGELOG.md
+          echo "" >> CHANGELOG.md
+
+      - name: Salvar changelog
+        run: |
+          git config user.name "github-actions[bot]"
+          git confiig user.mail \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add CHANGELOG.md
+
+          if ! git diff --cached --quiet; then
+            git commit -m "docs: atualizar changelog"
+            git push
+          fi
