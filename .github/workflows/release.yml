@@ -1,0 +1,39 @@
+
+name: Release Automatica
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar repositorio
+        uses: actions/checkout@v4
+
+      - name: Definir versao
+        run: |
+          echo "VERSION=v1.0.${{ github.run_number }}" >> $GITHUB_ENV
+
+      - name: Compactar repositorio
+        run: |
+          git archive --format=zip \
+            --output="projeto-${{ env.VERSION }}.zip" \
+            HEAD
+
+      - name: Criar Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "${{ env.VERSION }}" \
+            "projeto-${{ env.VERSION }}.zip" \
+            --target "${{ github.sha }}" \
+            --title "Release ${{ env.VERSION }}" \
+            --generate-notes \
+            --latest
