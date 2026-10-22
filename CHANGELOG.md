@@ -2,6 +2,7 @@
 
 ## Últimas alterações
 
+- Create release.yml (6d99517) - Nickolas K. Osako
 - Update README.md (3127703) - Nickolas K. Osako
 - Update changelog.yml (0ba4c24) - Nickolas K. Osako
 - Update changelog.yml (dde59a4) - Nickolas K. Osako
