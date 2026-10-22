@@ -2,6 +2,7 @@
 
 ## Últimas alterações
 
+- Update README.md (3127703) - Nickolas K. Osako
 - Update changelog.yml (0ba4c24) - Nickolas K. Osako
 - Update changelog.yml (dde59a4) - Nickolas K. Osako
 - Update changelog.yml (872d9e4) - Nickolas K. Osako
